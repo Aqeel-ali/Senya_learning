@@ -1,5 +1,8 @@
 package com.aqeel.senyaapp.data
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Attraction(
     val description: String = "",
     val facts: List<String> = listOf(),

@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.aqeel.senyaapp.R
+import com.aqeel.senyaapp.adabters.HomeEpoxyController
 import com.aqeel.senyaapp.databinding.FragmentHomeBinding
 
 class HomeFragment:BaseFragment() {
@@ -27,6 +26,22 @@ class HomeFragment:BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+        val homeController= HomeEpoxyController { attractionid ->
+            navController.navigate(R.id.action_homeFragment_to_detailFragment)
+            activityViewModel.onSelectAttraction(attractionid)
+
+        }
+
+        homeController.isLoading=true
+        activityViewModel.attractionListLiveData.observe(viewLifecycleOwner){ attractionList->
+            homeController.elements=attractionList
+        }
+
+
+
+        binding.homeRecyclerView.setController(homeController)
 
 
     }

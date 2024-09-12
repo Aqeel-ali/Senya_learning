@@ -2,7 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
+    id ("kotlin-kapt")
+
 }
+
+
+kapt {
+    correctErrorTypes = true
+}
+
 
 android {
     namespace = "com.aqeel.senyaapp"
@@ -56,8 +64,21 @@ dependencies {
 
     // Navigation component
     val nav_version = "2.7.7"
-    implementation("androidx.navigation:navigation-fragment:$nav_version")
-    implementation("androidx.navigation:navigation-ui:$nav_version")
+    implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //image loading
+    implementation ("com.squareup.picasso:picasso:2.8")
+    //json to kotlin
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+
+
+    val epoxyVersion="5.1.4"
+    implementation ("com.airbnb.android:epoxy:$epoxyVersion")
+    kapt("com.airbnb.android:epoxy-processor:$epoxyVersion")
+
+
+    implementation ("ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.2.5")
 
 
 
